@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:alpine
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_DB=journey
+      - POSTGRES_PASSWORD=journey
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
